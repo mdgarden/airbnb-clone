@@ -8,7 +8,11 @@ flake8 = "*"
 black = "*"
 
 [packages]
-django = "*"
+django = "==3.1"
+pillow = "*"
+django-countries = "*"
+black = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.8"
