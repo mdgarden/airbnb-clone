@@ -1,10 +1,10 @@
 from django.db import models
 from django_countries.fields import CountryField
 from core import models as core_models
-from users import models as user_models
 
 
 class AbstractItem(core_models.TimeStampedModel):
+
     """ Abstract Item """
 
     name = models.CharField(max_length=80)
@@ -17,25 +17,23 @@ class AbstractItem(core_models.TimeStampedModel):
 
 
 class RoomType(AbstractItem):
-    """ RoomType Object Definition"""
 
-    pass
+    """ RoomType Object Definition"""
 
     class Meta:
         verbose_name = "Room Type"
-        ordering = ["name"]
 
 
 class Amenity(AbstractItem):
-    """ Amenity Object Definition"""
 
-    pass
+    """ Amenity Object Definition"""
 
     class Meta:
         verbose_name_plural = "Amenities"
 
 
 class Facility(AbstractItem):
+
     """ Facility Model Definition"""
 
     pass
@@ -45,26 +43,25 @@ class Facility(AbstractItem):
 
 
 class HouseRule(AbstractItem):
-    """ HouseRule Model Definition """
 
-    pass
+    """ HouseRule Model Definition """
 
     class Meta:
         verbose_name = "House Rule"
 
 
 class Photo(core_models.TimeStampedModel):
+
     """Photo Model Definition"""
 
     caption = models.CharField(max_length=80)
     file = models.ImageField(upload_to="room_photos")
-    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+    room = models.ForeignKey("Room", related_name="photos", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.caption
 
 
-# Create your models here.
 class Room(core_models.TimeStampedModel):
 
     """ Room Model Definition """
@@ -88,9 +85,9 @@ class Room(core_models.TimeStampedModel):
     room_type = models.ForeignKey(
         "RoomType", related_name="rooms", on_delete=models.SET_NULL, null=True
     )
-    amenities = models.ManyToManyField("Amenity", blank=True)
-    facilities = models.ManyToManyField("Facility", blank=True)
-    house_rules = models.ManyToManyField("HouseRule", blank=True)
+    amenities = models.ManyToManyField("Amenity", related_name="rooms", blank=True)
+    facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
+    house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
 
     def __str__(self):
         return self.name

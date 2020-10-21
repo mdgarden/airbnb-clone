@@ -16,25 +16,28 @@ class ItemAdmin(admin.ModelAdmin):
     pass
 
 
-# Register your models here.
+class PhotoInline(admin.TabularInline):
+
+    model = models.Photo
+
+
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
     """ Room Admin Definition """
 
+    inlines = (PhotoInline,)
+
     fieldsets = (
-        ("Space", {"fields": ("guests", "beds", "bedrooms", "baths")}),
         (
             "Basic Info",
-            {"fields": ("name", "description", "country", "address", "price")},
+            {"fields": ("name", "description", "country", "city", "address", "price")},
         ),
         ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
+        ("Space", {"fields": ("guests", "beds", "bedrooms", "baths")}),
         (
             "More About the Spaces",
-            {
-                "classes": ("collapse",),
-                "fields": ("amenities", "facilities", "house_rules"),
-            },
+            {"fields": ("amenities", "facilities", "house_rules")},
         ),
         ("Last Details", {"fields": ("host",)}),
     )
@@ -56,10 +59,9 @@ class RoomAdmin(admin.ModelAdmin):
         "total_rating",
     )
 
-    ordering = ("name", "price", "bedrooms")
-
     list_filter = (
         "instant_book",
+        "host__superhost",
         "city",
         "room_type",
         "amenities",
@@ -67,6 +69,8 @@ class RoomAdmin(admin.ModelAdmin):
         "house_rules",
         "country",
     )
+
+    raw_id_fields = ("host",)
 
     search_fields = ("=city", "^host__username")
 
@@ -81,6 +85,7 @@ class RoomAdmin(admin.ModelAdmin):
 
 @admin.register(models.Photo)
 class PhotoAdmin(admin.ModelAdmin):
+
     """ Photo Admin Definition """
 
     list_display = ("__str__", "get_thumbnail")
