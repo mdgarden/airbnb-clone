@@ -13,6 +13,7 @@ pillow = "*"
 django-countries = "*"
 black = "*"
 flake8 = "*"
+django-seed = "*"
 
 [requires]
 python_version = "3.8"
