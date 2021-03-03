@@ -4,5 +4,6 @@
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
   "python.linting.flake8Args": ["--max-line-length=128"],
-  "editor.formatOnSave": false
+  "editor.formatOnSave": true,
+  "prettier.disableLanguages":["html", "django-html"],
 }
