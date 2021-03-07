@@ -27,7 +27,7 @@ SECRET_KEY = "uj771(-g7a8cqo7cy^$o9@v1aq+k@b-z_lnwnv83%+)i#h)6fn"
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# DEBUG = False로 설정할 떄, ALLOWED_HOSTS="*"로 변경
 
 # Application definition
 
