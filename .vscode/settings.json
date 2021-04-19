@@ -1,5 +1,4 @@
 {
-  "python.pythonPath": "/home/metis/.local/share/virtualenvs/airbnb-clone-CMv4J624/bin/python",
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
