@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 from . import models, forms
 
 
-
 class HomeView(ListView):
 
     """ HomeView Definition """
