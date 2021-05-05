@@ -19,6 +19,7 @@ class LoginForm(forms.Form):
         except models.User.DoesNotExist:
             self.add_error("eamil", forms.ValidationError("User does not exist"))
 
+
 class SignUpForm(forms.Form):
 
     first_name = forms.CharField(max_length=80)
@@ -43,3 +44,13 @@ class SignUpForm(forms.Form):
             raise forms.ValidationError("Password confirmation does not match")
         else:
             return password
+
+    def save(self):
+        first_name = self.cleaned_data.get("first_name")
+        last_name = self.cleaned_data.get("last_name")
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+        user = models.User.objects.create_user(email, email, password)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
