@@ -142,3 +142,5 @@ config/settings.py
 
 #uploadfiles
 uploads/
+.env
+node_modules

@@ -14,6 +14,7 @@ django-countries = "*"
 black = "*"
 flake8 = "*"
 django-seed = "*"
+django-environ = "*"
 
 [requires]
 python_version = "3.9"
