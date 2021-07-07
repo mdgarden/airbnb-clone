@@ -15,6 +15,7 @@ black = "*"
 flake8 = "*"
 django-seed = "*"
 django-environ = "*"
+requests = "*"
 
 [requires]
 python_version = "3.9"
