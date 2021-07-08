@@ -21,7 +21,7 @@ print()
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "uj771(-g7a8cqo7cy^$o9@v1aq+k@b-z_lnwnv83%+)i#h)6fn"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -144,3 +144,7 @@ MEDIA_URL = "/media/"
 
 # Email Configuration
 
+EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = os.environ.get("MAILGUN_USERNAME")
+EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_PASSWORD")

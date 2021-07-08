@@ -16,6 +16,7 @@ flake8 = "*"
 django-seed = "*"
 django-environ = "*"
 requests = "*"
+django-dotenv = "*"
 
 [requires]
 python_version = "3.9"
