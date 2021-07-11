@@ -4,7 +4,7 @@ from django.db import models
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils.html import strip_tags
-from djnago.template.loader import render_to_string
+from django.template.loader import render_to_string
 
 
 class User(AbstractUser):
@@ -74,4 +74,5 @@ class User(AbstractUser):
                 fail_silently=False,
                 html_message=html_message,
             )
+            self.save()
         return
