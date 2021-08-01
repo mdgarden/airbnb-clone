@@ -101,6 +101,12 @@ def github_callback(request):
                     email = profile_json.get("email")
                     bio = profile_json.get("bio")
                     try:
+                        if name is None:
+                            name = username
+                        if bio is None:
+                            bio = ""
+                        if email is None:
+                            email = ""
                         user = models.User.objects.get(email=email)
                         if user.login_method != models.User.LOGIN_GITHUB:
                             raise GithubException(
@@ -113,6 +119,7 @@ def github_callback(request):
                             username=email,
                             bio=bio,
                             login_method=models.User.LOGIN_GITHUB,
+                            email_verified=True,
                         )
                         user.set_unusable_password()
                         user.save()
@@ -122,10 +129,11 @@ def github_callback(request):
                 else:
                     raise GithubException("Can't get your profile")
         else:
-            raise GithubException("Can't get your profile")
+            raise GithubException("Can't get code")
     except GithubException as e:
         messages.error(request, e)
         return redirect(reverse("users:login"))
+
 
 class UserProfileView(DetailView):
 
