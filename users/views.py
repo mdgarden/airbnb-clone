@@ -177,8 +177,8 @@ class UpdateProfileView(mixins.LoggedOutOnlyView, SuccessMessageMixin, UpdateVie
 
 
 class UpdatePasswordView(
-    mixins.EmailLoginOnlyView,
     mixins.LoggedInOnlyView,
+    mixins.EmailLoginOnlyView,
     SuccessMessageMixin,
     PasswordChangeView,
 ):
