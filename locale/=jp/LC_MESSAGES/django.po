@@ -19,4 +19,14 @@ msgstr ""
 
 #: templates/base.html:25
 msgid "Search By City"
+msgstr "都市名で検索"
+
+#: templates/partials/footer.html:4
+msgid "Please don't copy us."
 msgstr ""
+msgstr "無断転載禁止"
+
+#: templates/partials/footer.html:6
+msgid "All rights reserved"
+msgstr ""
+msgstr "All rights reserved" 
